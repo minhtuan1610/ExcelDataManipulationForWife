@@ -1,4 +1,8 @@
-document.querySelector("input").addEventListener("change", convertJsonAndWrite);
+const cfmCode = document.getElementById(cfm).addEventListener("change", () => {
+  console.log(this);
+}); // To be continue
+
+document.querySelector("#data").addEventListener("change", convertJsonAndWrite);
 
 function convertJsonAndWrite() {
   /* Convert excel to json */
@@ -39,6 +43,8 @@ function convertJson() {
   const tbl = document.createElement("table");
   const thead = tbl.createTHead();
   const headRow = thead.insertRow();
+
+  /* Create header table */
   const headerTbl = [
     "Batch",
     "NO",
@@ -56,26 +62,27 @@ function convertJson() {
     headRow.appendChild(th);
   });
 
+  /* Add data in each row table */
   for (let i in dataResult) {
     if (dataResult[i].fileSeq != "undefined") {
       const row = tbl.insertRow();
       const cellBatch = row.insertCell();
-      cellBatch.textContent = dataResult[i].fileSeq;
       const cellNo = row.insertCell();
-      cellNo.textContent = parseInt(i) + 1; // the row number //
       const cellDate = row.insertCell();
-      cellDate.textContent = dataResult[i].date;
       const cellCfm = row.insertCell();
+      const cellBusi = row.insertCell();
+      const cellCount = row.insertCell();
+      const cellRfn = row.insertCell();
+      const cellSfn = row.insertCell();
+      cellBatch.textContent = dataResult[i].fileSeq;
+      cellNo.textContent = parseInt(i) + 1; // the row number //
+      cellDate.textContent = dataResult[i].date;
       cellCfm.textContent =
         "Vobeo_" + cellDate.textContent + "_" + cellBatch.textContent;
-      const cellBusi = row.insertCell();
       cellBusi.textContent = "500-BULK COLLECTION";
-      const cellCount = row.insertCell();
       cellCount.textContent = dataResult[i].count;
-      const cellRfn = row.insertCell();
       cellRfn.textContent =
         "S_RFN_" + cellDate.textContent + "_" + cellBatch.textContent;
-      const cellSfn = row.insertCell();
       cellSfn.textContent =
         "R_SFN_" + cellDate.textContent + "_" + cellBatch.textContent;
     }

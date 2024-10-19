@@ -1,3 +1,21 @@
+.inputData {
+    display: flex;
+    flex-direction: column;
+    line-height: 25px;
+}
+
+.inputCode {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.inputCode label {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
 table {
     border-collapse: collapse;
 }
@@ -10,5 +28,5 @@ th, td {
     text-align: center;
     border-left: 1px solid;
     border-right: 1px solid;
-    padding: 3px 12px;
+    padding: 2px 12px;
 }

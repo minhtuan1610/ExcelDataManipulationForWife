@@ -9,11 +9,27 @@
 </head>
 
 <body>
-    <label for="data">Choose an excel file: </label>
-    <input type="file" id="data" accept=".xlsx" />
+    <div class="inputData">
+        <div class="inputCode">
+            <label for="cfm">CFM_TRX_NO code:
+                <input type="text" id="cfm">
+            </label>
+            <label for="rfn">Receive_File_Name code:
+                <input type="text" id="rfn">
+            </label>
+            <label for="sfn">Send_File_Name code:
+                <input type="text" id="sfn">
+            </label>
+        </div>
+        <label for="data">Choose an excel file:
+            <input type="file" id="data" accept=".xlsx" />
+        </label>
+    </div>
+
     <div>
         <br>
     </div>
+
     <div id="result"></div>
 </body>
 <script src="xlsx.full.min.js"></script>
