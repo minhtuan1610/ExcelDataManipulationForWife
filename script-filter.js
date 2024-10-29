@@ -1,8 +1,29 @@
-const cfmCode = document.getElementById(cfm).addEventListener("change", () => {
-  console.log(this);
-}); // To be continue
+let cfm = "MaiBeo";
+let rfn = "MaiMap";
+let sfn = "MaiCua";
+document.querySelector("#cfm").addEventListener("change", (e) => {
+  cfm = changeInputData(e, "MaiBeo");
+});
+
+document.querySelector("#rfn").addEventListener("change", (e) => {
+  rfn = changeInputData(e, "MaiMap");
+});
+
+document.querySelector("#sfn").addEventListener("change", (e) => {
+  sfn = changeInputData(e, "MaiCua");
+});
 
 document.querySelector("#data").addEventListener("change", convertJsonAndWrite);
+
+function changeInputData(event, defaultData) {
+  if (
+    event.target.value === null ||
+    event.target.value.match(/^ *$/) !== null
+  ) {
+    return defaultData;
+  }
+  return event.target.value;
+}
 
 function convertJsonAndWrite() {
   /* Convert excel to json */
@@ -78,13 +99,13 @@ function convertJson() {
       cellNo.textContent = parseInt(i) + 1; // the row number //
       cellDate.textContent = dataResult[i].date;
       cellCfm.textContent =
-        "Vobeo_" + cellDate.textContent + "_" + cellBatch.textContent;
+        cfm + "_" + cellDate.textContent + "_" + cellBatch.textContent;
       cellBusi.textContent = "500-BULK COLLECTION";
       cellCount.textContent = dataResult[i].count;
       cellRfn.textContent =
-        "S_RFN_" + cellDate.textContent + "_" + cellBatch.textContent;
+        rfn + "_" + cellDate.textContent + "_" + cellBatch.textContent;
       cellSfn.textContent =
-        "R_SFN_" + cellDate.textContent + "_" + cellBatch.textContent;
+        sfn + "_" + cellDate.textContent + "_" + cellBatch.textContent;
     }
   }
 
