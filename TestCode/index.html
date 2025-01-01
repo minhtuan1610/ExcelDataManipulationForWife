@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XLSX to JSON Converter</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+</head>
+
+<body>
+    <h1>Convert XLSX to JSON</h1>
+    <input type="file" id="upload" accept=".xlsx" />
+    <button id="convert">Convert to JSON</button>
+    <pre id="output"></pre>
+
+    <script>
+        document.getElementById('convert').addEventListener('click', function () {
+            const fileInput = document.getElementById('upload');
+            const file = fileInput.files[0];
+
+            if (!file) {
+                alert('Please upload an .xlsx file');
+                return;
+            }
+
+            const reader = new FileReader();
+
+            reader.onload = function (e) {
+                const data = new Uint8Array(e.target.result);
+                const workbook = XLSX.read(data, { type: 'array' });
+
+                // Convert the first sheet to JSON
+                const firstSheetName = workbook.SheetNames[0];
+                const worksheet = workbook.Sheets[firstSheetName];
+                const json = XLSX.utils.sheet_to_json(worksheet);
+
+                // Display JSON on the page
+                const outputElement = document.getElementById('output');
+                outputElement.textContent = JSON.stringify(json, null, 2);
+            };
+
+            reader.readAsArrayBuffer(file);
+        });
+    </script>
+</body>
+
+</html>
