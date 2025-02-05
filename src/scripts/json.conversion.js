@@ -1,6 +1,5 @@
-import * as XLSX from "../lib/xlsx.full.min.js";
-
-export function convertXlsx(file, callbackFunc) {
+export function convertXlsx(fileInput, callbackFunc) {
+  const file = fileInput.files[0];
   const reader = new FileReader();
   reader.onload = function (e) {
     const data = new Uint8Array(e.target.result);
@@ -14,5 +13,3 @@ export function convertXlsx(file, callbackFunc) {
 
   reader.readAsArrayBuffer(file);
 }
-
-convertXlsx();
