@@ -1,5 +1,3 @@
-import { convertXlsx } from "../src/scripts/json.conversion.js";
-
 document.getElementById("convert").addEventListener("click", async function () {
   const fileInput = document.getElementById("upload");
   let abc = "g";
